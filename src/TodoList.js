@@ -1,35 +1,11 @@
 import React, { Component } from "react";
 import Todo from "./Todo";
+import TodoInput from "./TodoInput";
 
 class TodoList extends Component {
   state = {
     todo1: [],
-    todo2: [
-      {
-        userId: 1,
-        id: 1,
-        title: "delectus aut autem",
-        completed: false
-      },
-      {
-        userId: 1,
-        id: 2,
-        title: "quis ut nam facilis et officia qui",
-        completed: false
-      },
-      {
-        userId: 1,
-        id: 3,
-        title: "fugiat veniam minus",
-        completed: false
-      },
-      {
-        userId: 1,
-        id: 4,
-        title: "et porro tempora",
-        completed: true
-      }
-    ]
+    todo2: []
   };
 
   componentDidMount() {
@@ -56,7 +32,13 @@ class TodoList extends Component {
         }
       })
     });
-    console.log(this.state);
+  };
+
+  addTodo = todo => {
+    this.setState({
+      todo1: this.state.todo1,
+      todo2: [todo, ...this.state.todo2]
+    });
   };
 
   render() {
@@ -65,10 +47,11 @@ class TodoList extends Component {
       <div>
         <h1>Hello CodeSandbox</h1>
         <h2>Add Todo</h2>
+        <TodoInput addTodo={this.addTodo} />
         {this.state.todo2.map(todo => (
           <Todo
             todo={todo}
-            check={() => {
+            toggleComplete={() => {
               this.toggleComplete(todo.id);
             }}
           />
