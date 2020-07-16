@@ -2,7 +2,15 @@ import React, { Component } from "react";
 
 class Todo extends Component {
   render() {
-    return <div>{this.props.todo.title}</div>;
+    const { todo } = this.props;
+    return (
+      <div>
+        <span style={{ textDecoration: !todo.completed ? "line-through" : "" }}>
+          {todo.title}
+        </span>
+        <button onClick={this.props.check}> x </button>
+      </div>
+    );
   }
 }
 
