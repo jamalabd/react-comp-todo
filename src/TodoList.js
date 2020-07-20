@@ -41,13 +41,22 @@ class TodoList extends Component {
     });
   };
 
+  totolTodo = (todo, num) => {
+    todo.completed ? num + 1 : num - 1;
+    return num;
+  };
+
   render() {
     // console.log(this.state.todo2);
     return (
       <div>
         <h1>Hello CodeSandbox</h1>
         <h2>Add Todo</h2>
-        <TodoInput addTodo={this.addTodo} />
+        <TodoInput
+          addTodo={this.addTodo}
+          todo={this.state.todo2}
+          totolTodo={this.totolTodo}
+        />
         {this.state.todo2.map(todo => (
           <Todo
             todo={todo}

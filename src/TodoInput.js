@@ -25,6 +25,8 @@ class TodoInput extends Component {
   };
 
   render() {
+    const { todo } = this.props;
+    let num = 0;
     return (
       <div>
         <form onSubmit={this.onSubmit}>
@@ -37,6 +39,7 @@ class TodoInput extends Component {
           />
           <button onClick={this.onSubmit}> Submit </button>
         </form>
+        <div>Uncompleted Todo's: {this.props.totolTodo(todo, 0)}</div>
       </div>
     );
   }
